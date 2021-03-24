@@ -29,13 +29,15 @@ class CalculateController: UIViewController {
         weightValue.text = "\(Int(sender.value)) kg"
     }
     @IBAction func calculate(_ sender: UIButton) {
-        calculator.calculateBMI(weightSlider: weightSlider.value, heightSlider: heightSlider.value)
+        calculator.calculateBMI(weight: weightSlider.value, height: heightSlider.value)
         self.performSegue(withIdentifier: "goToResult", sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToResult"{
             let destinationVC = segue.destination as! ResultViewController
-            destinationVC.bmiText = calculator.calculatedBMI
+            destinationVC.bmiText = calculator.getValue()
+            destinationVC.adviceText = calculator.getAdvice()
+            destinationVC.healthColor = calculator.getColor()
         }
     }
     
