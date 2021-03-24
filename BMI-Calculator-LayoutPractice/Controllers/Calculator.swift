@@ -9,7 +9,11 @@
 import UIKit
 
 struct Calculator {
-    func calculated(weightSlider: Float, heightSlider: Float) {
-
+    
+    var calculatedBMI = "0.0"
+    
+    mutating func calculateBMI(weight: Float, height: Float) {
+        let bmi = weight / pow(height, 2)
+        calculatedBMI = String(format: "%.1f", bmi)
     }
 }
